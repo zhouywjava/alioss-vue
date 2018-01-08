@@ -8,7 +8,7 @@
 <script>
 export default {
   name: 'app',
-  data () {
+  data:function() {
     return {
       serverData: 'data from server'
     }
@@ -24,9 +24,9 @@ export default {
         console.log(response);
         this.serverData=response.data;
       })
-      .catch(function(error) {
-        console.log(error);
-      })
+        .catch(function(error) {
+          console.log(error);
+        })
     }
   }
 }

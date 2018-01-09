@@ -27,7 +27,7 @@ export default {
           showLogin:true,
           showRegister:false,
           showTishi:false,
-          tishi:'',
+          tishi:'no show',
           username:'',
           password:'',
           newUsername:'',
@@ -39,5 +39,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+  .login-wrap{text-align:center;}
+  input{display:block; width:250px; height:40px; line-height:40px; margin:0 auto; margin-bottom: 10px; outline:none; border:1px solid #888; padding:10px; box-sizing:border-box;}
+  p{color:red;}
+  button{display:block; width:250px; height:40px; line-height: 40px; margin:0 auto; border:none; background-color:#41b883; color:#fff; font-size:16px; margin-bottom:5px;}
+  span{cursor:pointer;}
+  span:hover{color:#41b883;}
 </style>

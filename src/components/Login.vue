@@ -20,6 +20,7 @@
 </template>
 
 <script>
+  import {setCookie,getCookie} from './../assets/js/cookie'
 export default {
   name: 'Login',
   data: function(){
@@ -32,6 +33,39 @@ export default {
           password:'',
           newUsername:'',
           newPassword:''
+      }
+  },
+  mounted(){
+    if(getCookie('username')){
+        this.$router.push('/home');
+    }
+  },
+  methods:{
+      login(){
+          if(this.username == "" || this.password == ""){
+              alert("请输入用户名和密码");
+          }else{
+              let data = {'username':this.username,'password':this.password}
+              this.$http.post('http://localhost:9090/alioss-server/home/login').then((res)=>{
+                  console.log(res);
+                  if(res.data == -1){
+                      this.tishi = "该用户不存在";
+                      this.showTishi = true;
+                  }else if(res.data == 0){
+                      this.tishi = "密码输入错误";
+                      this.showTishi = true;
+                  }else if(res.data == 'admin'){
+                      this.$router.push('/main');
+                  }else{
+                      this.tishi = '登录成功';
+                      this.showTishi = true;
+                      setCookie('username',this.username,1000*60);
+                      setTimeout(function () {
+                        this.$router.push('/home');
+                      }.bind(this),1000);
+                  }
+              });
+          }
       }
   }
 }

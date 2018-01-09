@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <!--<h1>服务端数据为:{{serverData}}</h1>-->
+  <!--  <h1>服务端数据为:{{serverData}}</h1>-->
     <img src="./assets/logo.png">
     <router-view/>
   </div>
@@ -20,7 +20,7 @@ export default {
     getData () {
       console.log("------------getData-------------");
       var $this = this;
-      this.$http.get('http://localhost:9090/alioss/home/hello').then(function(response) {
+      this.$http.get('http://localhost:9090/alioss-server/home/hello').then(function(response) {
         console.log(response);
         this.serverData=response.data;
       })

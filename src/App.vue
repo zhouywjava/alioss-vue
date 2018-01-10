@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-  <!--  <h1>服务端数据为:{{serverData}}</h1>-->
+   <!--<h1>服务端数据为:{{serverData}}</h1>-->
     <img src="./assets/logo.png">
     <router-view/>
   </div>

@@ -46,27 +46,45 @@ export default {
               alert("请输入用户名和密码");
           }else{
               let data = {'username':this.username,'password':this.password}
-              this.$http.post('http://localhost:9090/alioss-server/home/login').then((res)=>{
-                  console.log(res);
-                  if(res.data == -1){
-                      this.tishi = "该用户不存在";
-                      this.showTishi = true;
-                  }else if(res.data == 0){
-                      this.tishi = "密码输入错误";
-                      this.showTishi = true;
-                  }else if(res.data == 'admin'){
-                      this.$router.push('/main');
-                  }else{
-                      this.tishi = '登录成功';
-                      this.showTishi = true;
-                      setCookie('username',this.username,1000*60);
-                      setTimeout(function () {
-                        this.$router.push('/home');
-                      }.bind(this),1000);
+              this.$http.post('http://localhost:9090/alioss-server/home/login',data).then((res)=>{
+                  let resj = JSON.parse(res.bodyText);
+                  this.tishi = resj.message;
+                  this.showTishi = true;
+                  if(resj.code == 10000){
+                    setCookie('username',this.username,1000*60);
+                    setTimeout(function () {
+                      this.$router.push('/home');
+                    }.bind(this),1000);
                   }
               });
           }
-      }
+      },
+    register(){
+        if(this.newUsername == "" || this.newPassword == ""){
+            alert("请输入用户名和密码");
+        }else{
+            let data = {'username':this.username,'password':this.password}
+            this.$http.post('http://localhost:9090/alioss-server/home/regist',data).then(function(res){
+              let resj = JSON.parse(res.bodyText);
+              this.tishi = resj.message;
+              this.showTishi = true;
+              if(resj.code == 10000){
+                setCookie('username',this.username,1000*60);
+                setTimeout(function () {
+                  this.$router.push('/home');
+                }.bind(this),1000);
+              }
+            })
+        }
+    },
+    ToRegister(){
+      this.showLogin = false
+      this.showRegister = true
+    },
+    ToLogin(){
+      this.showLogin = true
+      this.showRegister = false
+    }
   }
 }
 </script>

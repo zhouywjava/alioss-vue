@@ -2,10 +2,12 @@
   <div id="app">
    <!--<h1>服务端数据为:{{serverData}}</h1>-->
     <img src="./assets/logo.png">
+    <firstcomponent></firstcomponent>
     <router-view/>
   </div>
 </template>
 <script>
+  import firstcomponent from '@/components/FirstComponent'
 export default {
   name: 'app',
   data:function() {
@@ -28,7 +30,8 @@ export default {
           console.log(error);
         })
     }
-  }
+  },
+  components:{firstcomponent}
 }
 </script>
 

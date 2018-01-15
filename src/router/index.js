@@ -1,12 +1,14 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import VueResource from 'vue-resource'
 import HelloWorld from '@/components/HelloWorld'
 import Login from '@/components/Login'
 import Home from '@/components/Home'
+import SecondComponent from '@/components/SecondComponent'
 
 Vue.use(Router)
-Vue.use(VueResource)
+
+const First = {template:'<div><h2>我是第1个子页面</h2></div>'}
+
 
 export default new Router({
   routes: [
@@ -29,6 +31,16 @@ export default new Router({
       path: '/hello',
       name: 'hello',
       component: HelloWorld
+    },
+    {
+      path: '/first',
+      name: 'first',
+      component: First
+    },
+    {
+      path: '/second',
+      name: 'second',
+      component: SecondComponent
     },
   ]
 })
